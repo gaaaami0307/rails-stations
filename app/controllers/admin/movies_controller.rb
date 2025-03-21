@@ -9,4 +9,7 @@ class Admin::MoviesController < ApplicationController
     @movie.save
     render json: @movie
   end
+
+  def new
+  end
 end
