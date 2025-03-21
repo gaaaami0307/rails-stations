@@ -6,7 +6,7 @@ class Admin::MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_params)
 
-    if Movie.find_by(name: @movie.name).present?
+    if Movie.find_by(name: @movie.name) != nil
       flash.now[:alert] = "その名前の映画はすでに登録されています。" # 即時表示
       render :new, status: :unprocessable_entity
     elsif @movie.save
