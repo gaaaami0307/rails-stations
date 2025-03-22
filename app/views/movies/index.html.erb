@@ -2,6 +2,26 @@
   <h1>映画一覧</h1>
 </header>
 
+<%= form_with url: movies_path, method: :get do %>
+  <div>
+    <%= label_tag "lbl_txtbox", "キーワード検索" %>
+    <%= text_field_tag :keyword, params[:keyword] %>
+  </div>
+
+  <div>
+    <%= radio_button_tag :is_showing, "all", params[:is_showing] == "all" %>
+    <%= label_tag "rb_all", "すべて" %>
+    
+    <%= radio_button_tag :is_showing, "1", params[:is_showing] == "1" %>
+    <%= label_tag "rb_showing", "公開中" %>
+
+    <%= radio_button_tag :is_showing, "0", params[:is_showing] == "0" %>
+    <%= label_tag "rb_notshowing", "公開予定" %>
+  </div>
+
+  <%= submit_tag "検索" %>
+<% end %>
+
 <table border="1">
   <tr>
     <th>ID</th>
