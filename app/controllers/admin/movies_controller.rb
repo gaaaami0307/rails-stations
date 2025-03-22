@@ -25,6 +25,17 @@ class Admin::MoviesController < ApplicationController
     @movie = Movie.find(params[:id]);
   end
 
+  def update
+    @movie = Movie.find(params[:id])
+
+    if @movie.update(movie_params)
+      redirect_to admin_movies_path, notice: "編集に成功しました！"
+    else
+      flash.now[:alert] = "編集に失敗しました。"
+      render :show, status:400
+    end
+  end
+
   private
 
   def movie_params
