@@ -21,6 +21,10 @@ class Admin::MoviesController < ApplicationController
     @movie = Movie.new
   end
 
+  def show
+    @movie = Movie.find(params[:id]);
+  end
+
   private
 
   def movie_params
