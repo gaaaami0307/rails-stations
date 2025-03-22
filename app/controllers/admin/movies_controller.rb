@@ -23,6 +23,11 @@ class Admin::MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id]);
+    render :edit
+  end
+
+  def edit
+    @movie = Movie.find(params[:id]);
   end
 
   def update
