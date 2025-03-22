@@ -41,3 +41,5 @@
     <%= f.submit "編集" %>
   </div>
 <% end %>
+
+<%= button_to "削除", admin_movie_path(@movie), method: :delete, data: { confirm: "本当に削除しますか？" } %>
