@@ -8,17 +8,17 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 Sheet.create(column:1, row:'a');
-Sheet.create(column:1, row:'b');
-Sheet.create(column:1, row:'c');
-Sheet.create(column:1, row:'d');
-Sheet.create(column:1, row:'e');
 Sheet.create(column:2, row:'a');
-Sheet.create(column:2, row:'b');
-Sheet.create(column:2, row:'c');
-Sheet.create(column:2, row:'d');
-Sheet.create(column:2, row:'e');
 Sheet.create(column:3, row:'a');
+Sheet.create(column:4, row:'a');
+Sheet.create(column:5, row:'a');
+Sheet.create(column:1, row:'b');
+Sheet.create(column:2, row:'b');
 Sheet.create(column:3, row:'b');
+Sheet.create(column:4, row:'b');
+Sheet.create(column:5, row:'b');
+Sheet.create(column:1, row:'c');
+Sheet.create(column:2, row:'c');
 Sheet.create(column:3, row:'c');
-Sheet.create(column:3, row:'d');
-Sheet.create(column:3, row:'e');
+Sheet.create(column:4, row:'c');
+Sheet.create(column:5, row:'c');

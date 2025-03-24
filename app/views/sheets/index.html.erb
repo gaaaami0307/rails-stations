@@ -1,1 +1,31 @@
 <%= stylesheet_link_tag "sheets", media: "all" %>
+
+<table>
+  <% @sheets.each do |sheet| %>
+
+    <tr>
+    <% if sheet.row == 'a' %>
+      <td>
+        <%= sheet.row %>-<%= sheet.column %>
+      </td>
+    <% end %>
+    </tr>
+    
+    <tr>
+    <% if sheet.row == 'b' %>
+      <td>
+        <%= sheet.row %>-<%= sheet.column %>
+      </td>
+    <% end %>
+    </tr>
+
+    <tr>
+    <% if sheet.row == 'c' %>
+      <td>
+        <%= sheet.row %>-<%= sheet.column %>
+      </td>
+    <% end %>
+    </tr>
+
+  <% end %>
+</table>
