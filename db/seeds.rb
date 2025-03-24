@@ -7,4 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-Sheet.find_by_sql("INSERT INTO `sheets` VALUES(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'a'), (4, 4, 'a'), (5, 5, 'a'), (6, 1, 'b'), (7, 2, 'b'), (8, 3, 'b'), (9, 4, 'b'), (10, 5, 'b'), (11, 1, 'c'), (12, 2, 'c'), (13, 3, 'c'), (14, 4, 'c'), (15, 5, 'c');")
+Sheet.create(column:1, row:'a');
+Sheet.create(column:1, row:'b');
+Sheet.create(column:1, row:'c');
+Sheet.create(column:1, row:'d');
+Sheet.create(column:1, row:'e');
+Sheet.create(column:2, row:'a');
+Sheet.create(column:2, row:'b');
+Sheet.create(column:2, row:'c');
+Sheet.create(column:2, row:'d');
+Sheet.create(column:2, row:'e');
+Sheet.create(column:3, row:'a');
+Sheet.create(column:3, row:'b');
+Sheet.create(column:3, row:'c');
+Sheet.create(column:3, row:'d');
+Sheet.create(column:3, row:'e');
