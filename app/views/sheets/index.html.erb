@@ -1,31 +1,39 @@
 <%= stylesheet_link_tag "sheets", media: "all" %>
 
-<table>
-  <% @sheets.each do |sheet| %>
+<header>
+  <h1>座席一覧</h1>
+</header>
 
-    <tr>
-    <% if sheet.row == 'a' %>
-      <td>
-        <%= sheet.row %>-<%= sheet.column %>
-      </td>
+<table>
+
+    <tr class="sheetbox">
+    <% @sheets.each do |sheet| %>
+      <% if sheet.row == 'a' %>
+        <td class="sheet">
+          <%= sheet.row %>-<%= sheet.column %>
+        </td>
+      <% end %>
     <% end %>
     </tr>
     
-    <tr>
-    <% if sheet.row == 'b' %>
-      <td>
-        <%= sheet.row %>-<%= sheet.column %>
-      </td>
+    <tr class="sheetbox">
+    <% @sheets.each do |sheet| %>
+      <% if sheet.row == 'b' %>
+        <td class="sheet">
+          <%= sheet.row %>-<%= sheet.column %>
+        </td>
+      <% end %>
     <% end %>
     </tr>
 
-    <tr>
-    <% if sheet.row == 'c' %>
-      <td>
-        <%= sheet.row %>-<%= sheet.column %>
-      </td>
+    <tr class="sheetbox">
+      <% @sheets.each do |sheet| %>
+        <% if sheet.row == 'c' %>
+        <td class="sheet">
+          <%= sheet.row %>-<%= sheet.column %>
+        </td>
+      <% end %>
     <% end %>
     </tr>
 
-  <% end %>
 </table>
