@@ -7,7 +7,4 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-Movie.destroy_all
-Movie.create!(name:"railsに苦しむ:序", year:2025, description:"Techtrainでrailsに苦しみ、挫折するお話", image_url:"https://picsum.photos/200/300", is_showing:true)
-Movie.create!(name:"railsに苦しむ:中", year:2025, description:"TechTrainのruby入門のおかげでモチベを取り戻すお話", image_url:"https://picsum.photos/200/300", is_showing:true)
-Movie.create!(name:"railsに苦しむ:結", year:2025, description:"Techtrainでrailsを制覇するお話", image_url:"https://picsum.photos/200/300", is_showing:false)
+Sheet.find_by_sql("INSERT INTO `sheets` VALUES(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'a'), (4, 4, 'a'), (5, 5, 'a'), (6, 1, 'b'), (7, 2, 'b'), (8, 3, 'b'), (9, 4, 'b'), (10, 5, 'b'), (11, 1, 'c'), (12, 2, 'c'), (13, 3, 'c'), (14, 4, 'c'), (15, 5, 'c');")
