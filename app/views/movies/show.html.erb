@@ -1,0 +1,27 @@
+<%= stylesheet_link_tag "movies", media: "all" %>
+<header>
+  <h1>映画詳細</h1>
+</header>
+
+<h2>(ID:<%= @movie.id %>)  <%= @movie.name %></h2>
+<img src=<%= @movie.image_url %>> </img> 
+
+<p> <%= @movie.year %>年公開   
+<% if @movie.is_showing==true then %>
+  ☆上映中
+  <% else %>
+  ☆上映予定
+<% end %>
+</p>
+<p>--------------------------------</p>
+<%= simple_format(@movie.description) %>
+<p>--------------------------------</p>
+<h2>上映スケジュール</h2>
+<% @movie.schedules.each do |sc| %>
+  <p><%= sc.start_time %>~<%= sc.end_time %></p>
+<% end %>
+<br>
+<br>
+<br>
+<p>作成日時: <%= @movie.created_at %></p>
+<p>更新日時: <%= @movie.updated_at %></p>
