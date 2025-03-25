@@ -1,0 +1,30 @@
+<header>
+  <h1>スケジュール編集<管理者画面></h1>
+</header>
+
+<%= form_with(model: @schedule, url: admin_schedule_path(@schedule), method: :put) do |f| %>
+  
+  <% if flash[:notice] %>
+    <p style="color: green;"><%= flash[:notice] %></p>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <p style="color: red;"><%= flash[:alert] %></p>
+  <% end %>
+  
+  <div>
+    <%= f.label :start_time, "開始時刻" %>
+    <%= f.datetime_local_field :start_time, value: @schedule.start_time%>
+  </div>
+
+  <div>
+    <%= f.label :end_time, "終了時刻" %>
+    <%= f.datetime_local_field :end_time, value: @schedule.end_time %>
+  </div>
+
+  <div>
+    <%= f.submit "編集" %>
+  </div>
+<% end %>
+
+<%= button_to "削除", admin_schedule_path(@schedule), method: :delete, data: { confirm: "本当に削除しますか？" } %>

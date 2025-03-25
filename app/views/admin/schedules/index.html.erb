@@ -3,8 +3,16 @@
   <h1>スケジュール一覧</h1>
 </header>
 
+<% if flash[:notice] %>
+  <p style="color: green;"><%= flash[:notice] %></p>
+<% end %>
+
+<% if flash[:alert] %>
+  <p style="color: red;"><%= flash[:alert] %></p>
+<% end %>
+
 <% @movies.each do |movie| %>
-  <% if movie.schedules.find_by(id:1).present? %>
+  <% if movie.schedules.present? %>
     <h2> <%= movie.id %>: <%= movie.name %> </h2>
     <ul>
       <% movie.schedules.each do |sc| %>

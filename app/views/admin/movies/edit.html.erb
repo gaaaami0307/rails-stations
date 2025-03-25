@@ -45,9 +45,9 @@
 <%= button_to "削除", admin_movie_path(@movie), method: :delete, data: { confirm: "本当に削除しますか？" } %>
 
 <h2>スケジュール</h2>
-<% @movie.schedules.each do |sc| %>
+<% @schedules.each do |sc| %>
   <li>
-    <a href="/admin/schedules/<%= sc.id %>"><%=sc.start_time%>~<%=sc.end_time%></a>
+    <a href="/admin/schedules/<%= sc.id %>"><%= sc.start_time.strftime('%Y-%m-%d %H:%M') %>～<%= sc.end_time.strftime('%Y-%m-%d %H:%M') %></a>
   </li>
 <% end %>
 

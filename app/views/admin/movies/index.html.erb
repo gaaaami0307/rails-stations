@@ -18,6 +18,7 @@
     <th>上映中か</th>
     <th>概要</th>
     <th>画像URL</th>
+    <th>スケジュール</th>
     <th>作成日時</th>
     <th>更新日時</th>
   </tr>
@@ -33,7 +34,14 @@
       <% end %>
       </td>
       <td><%= movie.description %></td>
-      <td><a href=<%= movie.image_url %>>画像</a></td>
+      <td><img src="<%= movie.image_url %>" alt="<%= movie.name %>"></td>
+      <td>
+      <% movie.schedules.each do |sc| %>
+        <li>
+          <a href="/admin/schedules/<%= sc.id %>"><%= sc.start_time.strftime('%Y-%m-%d %H:%M') %>～<%= sc.end_time.strftime('%Y-%m-%d %H:%M') %></a>
+        </li>
+      <% end %>
+      </td>
       <td><%= movie.created_at %></td>
       <td><%= movie.updated_at %></td>
     </tr>
