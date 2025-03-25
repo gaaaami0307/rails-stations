@@ -1,0 +1,17 @@
+<%= stylesheet_link_tag "schedules", media: "all" %>
+<header>
+  <h1>スケジュール一覧</h1>
+</header>
+
+<% @movies.each do |movie| %>
+  <% if movie.schedules.find_by(id:1).present? %>
+    <h2> <%= movie.id %>: <%= movie.name %> </h2>
+    <ul>
+      <% movie.schedules.each do |sc| %>
+        <li>
+          <a href="/admin/schedules/<%= sc.id %>"><%=sc.start_time%>~<%=sc.end_time%></a>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
