@@ -17,11 +17,27 @@
 <%= simple_format(@movie.description) %>
 <p>--------------------------------</p>
 <h2>上映スケジュール</h2>
-<% @movie.schedules.each do |sc| %>
-  <p><%= sc.start_time %>~<%= sc.end_time %></p>
-<% end %>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>映画ID</th>
+    <th>上映時間</th>
+    <th>作成日時</th>
+    <th>更新日時</th>
+  </tr>
+  <% @schedules.each do |sc| %>
+  <tr>
+    <td><%= sc.id %></td>
+    <td><%= sc.movie_id %></td>
+    <td><%= sc.start_time %>~<%= sc.end_time %></td>
+    <td><%= sc.created_at %></td>
+    <td><%= sc.updated_at %></td>
+  </tr>
+  <% end %>
+</table>
 <br>
 <br>
 <br>
 <p>作成日時: <%= @movie.created_at %></p>
 <p>更新日時: <%= @movie.updated_at %></p>
+<br>
