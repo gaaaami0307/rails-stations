@@ -1,0 +1,33 @@
+<header>
+  <h1>スケジュール追加<管理者画面></h1>
+</header>
+
+<%= form_with(model: @schedule, url: admin_movie_schedules_path(@movie), method: :post) do |f| %>
+  
+  <% if flash[:notice] %>
+    <p style="color: green;"><%= flash[:notice] %></p>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <p style="color: red;"><%= flash[:alert] %></p>
+  <% end %>
+  
+  <div>
+    <%= f.label :movie_id, "映画ID" %>
+    <%= f.number_field :movie_id%>
+  </div>
+
+  <div>
+    <%= f.label :start_time, "開始時刻" %>
+    <%= f.time_field :start_time %>
+  </div>
+
+  <div>
+    <%= f.label :end_time, "終了時刻" %>
+    <%= f.time_field :end_time %>
+  </div>
+
+  <div>
+    <%= f.submit "追加" %>
+  </div>
+<% end %>

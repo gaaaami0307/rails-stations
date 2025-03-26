@@ -34,10 +34,26 @@ class Admin::SchedulesController < ApplicationController
     end
   end
 
+  def new
+    @movie = Movie.find_by(id:params[:movie_id])
+    @schedule = @movie.schedules.new
+  end
+
+  def create
+    @schedule = Schedule.create(schedule_params)
+
+    if @schedule.save
+      redirect_to admin_schedules_path, notice: "追加に成功しました！"
+    else
+      flash.now[:alert] = "追加に失敗しました。"
+      render :new, status:400
+    end
+  end
+
   private
 
   def schedule_params
-    params.require(:schedule).permit(:start_time, :end_time)
+    params.require(:schedule).permit(:start_time, :end_time, :movie_id)
   end
 
 end

@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   resources :movies
 
   namespace :admin do
-    resources :movies
-    resources :schedules
+    resources :movies do
+      resources :schedules, only: [:new, :create]
+    end
+    resources :schedules, only: [:index, :show, :edit, :update, :destroy]
   end
 
   resources :sheets
