@@ -4,34 +4,34 @@
 
 <table>
 
-    <tr class="sheetbox">
-    <% @sheets.each do |sheet| %>
-      <% if sheet.row == 'a' %>
-        <td class="sheet">
-          <%= sheet.row %>-<%= sheet.column %>
-        </td>
-      <% end %>
+  <tr class="sheetbox">
+  <% @sheets.each do |sheet| %>
+    <% if sheet.row == 'a' %>
+      <td class="sheet">
+        <a href="<%=new_movie_schedule_reservation_path(@movie, @schedule, sheet_id: sheet.id)%>"><%= sheet.row %>-<%= sheet.column %></a>
+      </td>
     <% end %>
-    </tr>
-    
-    <tr class="sheetbox">
-    <% @sheets.each do |sheet| %>
-      <% if sheet.row == 'b' %>
-        <td class="sheet">
-          <%= sheet.row %>-<%= sheet.column %>
-        </td>
-      <% end %>
+  <% end %>
+  </tr>
+  
+  <tr class="sheetbox">
+  <% @sheets.each do |sheet| %>
+    <% if sheet.row == 'b' %>
+      <td class="sheet">
+        <%= sheet.row %>-<%= sheet.column %>
+      </td>
     <% end %>
-    </tr>
+  <% end %>
+  </tr>
 
-    <tr class="sheetbox">
-      <% @sheets.each do |sheet| %>
-        <% if sheet.row == 'c' %>
-        <td class="sheet">
-          <%= sheet.row %>-<%= sheet.column %>
-        </td>
-      <% end %>
+  <tr class="sheetbox">
+    <% @sheets.each do |sheet| %>
+      <% if sheet.row == 'c' %>
+      <td class="sheet">
+        <%= sheet.row %>-<%= sheet.column %>
+      </td>
     <% end %>
-    </tr>
+  <% end %>
+  </tr>
 
 </table>
