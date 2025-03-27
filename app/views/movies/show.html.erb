@@ -29,13 +29,29 @@
   <tr>
     <td><%= sc.id %></td>
     <td><%= sc.movie_id %></td>
-    <td><%= sc.start_time %>~<%= sc.end_time %></td>
+    <td><%= sc.start_time.strftime("%H:%M") %>~<%= sc.end_time.strftime("%H:%M") %></td>
     <td><%= sc.created_at %></td>
     <td><%= sc.updated_at %></td>
   </tr>
   <% end %>
 </table>
 <br>
+<h2>予約</h2>
+<%= form_with(url:movie_reservations_path(@movie), method: :get) do |f| %>
+  
+  <div>
+    <%= f.label :date, "日付を選択" %>
+    <%= f.select :date, (0..6).map{ |i| [Date.today.advance(days: i).strftime("%Y-%m-%d"), Date.today.advance(days: i) ]} %>
+  </div>
+
+  <div>
+    <%= f.label :sid, "スケジュールを選択" %>
+    <%= f.select :sid, @schedules.map{ |sc| ["#{sc.start_time.strftime("%H:%M")}-#{sc.end_time.strftime("%H-%M")}", sc.id]} %>
+  </div>
+
+  <%= f.submit "座席を確認する" %>
+
+<% end %>
 <br>
 <br>
 <p>作成日時: <%= @movie.created_at %></p>
