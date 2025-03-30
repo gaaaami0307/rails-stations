@@ -3,6 +3,14 @@
   <h1>映画一覧</h1>
 </header>
 
+<% if flash[:notice] %>
+  <p style="color: green;"><%= flash[:notice] %></p>
+<% end %>
+
+<% if flash[:alert] %>
+  <p style="color: red;"><%= flash[:alert] %></p>
+<% end %>
+
 <%= form_with url: movies_path, method: :get do %>
   <div>
     <%= label_tag "lbl_txtbox", "キーワード検索" %>

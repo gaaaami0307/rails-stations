@@ -1,3 +1,38 @@
 <header>
   <h1>座席予約</h1>
 </header>
+
+<% if flash[:notice] %>
+  <p style="color: green;"><%= flash[:notice] %></p>
+<% end %>
+
+<% if flash[:alert] %>
+  <p style="color: red;"><%= flash[:alert] %></p>
+<% end %>
+
+<%= form_with(model: @reservation, url: reservations_path, method: :post) do |f| %>
+
+  <%= f.hidden_field :movie_id, value: @movie.id %>
+  <p> 映画：<%= @movie.name %></p>
+
+  <%= f.hidden_field :schedule_id, value: @schedule.id %>
+  <p> 上映スケジュール：<%= @schedule.start_time.strftime("%H:%M") %>-<%= @schedule.end_time.strftime("%H-%M") %></p>
+
+  <%= f.hidden_field :sheet_id, value: @sheet.id %>
+  <p> 座席：<%= @sheet.row %>-<%= @sheet.column %></p>
+
+  <%= f.hidden_field :date, value: params[:date] %>
+  <p> 日付：<%= params[:date] %></p>
+
+  <div>
+  <%= f.label :name, "予約者氏名" %>
+  <%= f.text_field :name, required: true %>
+  </div>
+
+  <div>
+  <%= f.label :email, "予約者メールアドレス" %>
+  <%= f.email_field :email, required: true %>
+  </div>
+
+  <%= f.submit "予約する" %>
+<% end %>
