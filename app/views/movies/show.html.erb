@@ -57,7 +57,7 @@
     <%= f.select :schedule_id, @schedules.map{ |sc| ["#{sc.start_time.strftime("%H:%M")}-#{sc.end_time.strftime("%H-%M")}", sc.id]} %>
   </div>
 
-  <%= f.submit "座席を確認する" %>
+  <%= f.submit "座席を予約する" %>
 
 <% end %>
 <br>
