@@ -29,6 +29,13 @@ class ReservationsController < ApplicationController
 
     @schedule = Schedule.find_by(id: params[:schedule_id])
     @sheet = Sheet.find_by(id: params[:sheet_id])
+
+    if Reservation.find_by(schedule_id: @schedule.id, sheet_id: @sheet.id).present?
+      flash[:alert]="その座席は予約済みです。"
+      redirect_to movie_path(@movie), status:302
+      return
+    end
+
     @reservation = Reservation.new
   end
 
