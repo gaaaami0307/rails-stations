@@ -20,4 +20,20 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @schedules = @movie.schedules
   end
+
+  def reservation
+    @movie = Movie.find_by(id: params[:movie_id])
+    if !params[:schedule_id].present?
+      redirect_to movie_path(@movie), status:302
+      return
+    end
+
+    if !params[:date].present?
+      redirect_to movie_path(@movie), status:302
+      return
+    end
+
+    @schedule = Schedule.find_by(id: params[:schedule_id])
+    @sheets = Sheet.all
+  end
 end
