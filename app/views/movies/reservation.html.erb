@@ -15,9 +15,15 @@
   <tr class="sheetbox">
   <% @sheets.each do |sheet| %>
     <% if sheet.row == 'a' %>
-      <td class="sheet">
-        <a href="<%=new_movie_schedule_reservation_path(@movie, @schedule, sheet_id: sheet.id, date: params[:date])%>"><%= sheet.row %>-<%= sheet.column %></a>
-      </td>
+      <% if @reservations.find_by(schedule_id: @schedule.id, sheet_id: sheet.id).present? %>
+        <td class="reservedsheet">
+          <p><%= sheet.row %>-<%= sheet.column %></p>
+        </td>
+      <% else %>
+        <td class="sheet">
+          <a href="<%=new_movie_schedule_reservation_path(@movie, @schedule, sheet_id: sheet.id, date: params[:date])%>"><%= sheet.row %>-<%= sheet.column %></a>
+        </td>
+      <% end %>
     <% end %>
   <% end %>
   </tr>
@@ -25,19 +31,31 @@
   <tr class="sheetbox">
   <% @sheets.each do |sheet| %>
     <% if sheet.row == 'b' %>
-      <td class="sheet">
-      <a href="<%=new_movie_schedule_reservation_path(@movie, @schedule, sheet_id: sheet.id, date: params[:date])%>"><%= sheet.row %>-<%= sheet.column %></a>
-      </td>
+      <% if @reservations.find_by(schedule_id: @schedule.id, sheet_id: sheet.id).present? %>
+        <td class="reservedsheet">
+          <p><%= sheet.row %>-<%= sheet.column %></p>
+        </td>
+      <% else %>
+        <td class="sheet">
+          <a href="<%=new_movie_schedule_reservation_path(@movie, @schedule, sheet_id: sheet.id, date: params[:date])%>"><%= sheet.row %>-<%= sheet.column %></a>
+        </td>
+      <% end %>
     <% end %>
   <% end %>
   </tr>
 
   <tr class="sheetbox">
-    <% @sheets.each do |sheet| %>
-      <% if sheet.row == 'c' %>
-      <td class="sheet">
-        <a href="<%=new_movie_schedule_reservation_path(@movie, @schedule, sheet_id: sheet.id, date: params[:date])%>"><%= sheet.row %>-<%= sheet.column %></a>
-      </td>
+  <% @sheets.each do |sheet| %>
+    <% if sheet.row == 'c' %>
+      <% if @reservations.find_by(schedule_id: @schedule.id, sheet_id: sheet.id).present? %>
+        <td class="reservedsheet">
+          <p><%= sheet.row %>-<%= sheet.column %></p>
+        </td>
+      <% else %>
+        <td class="sheet">
+          <a href="<%=new_movie_schedule_reservation_path(@movie, @schedule, sheet_id: sheet.id, date: params[:date])%>"><%= sheet.row %>-<%= sheet.column %></a>
+        </td>
+      <% end %>
     <% end %>
   <% end %>
   </tr>
