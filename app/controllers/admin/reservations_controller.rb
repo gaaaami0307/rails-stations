@@ -15,14 +15,14 @@ class Admin::ReservationsController < ApplicationController
     @movie = @schedule.movie
 
     if Reservation.find_by(date: @reservation.date, sheet_id: @reservation.sheet_id, schedule_id: @reservation.schedule_id) != nil
-      flash[:alert] = "その座席はすでに予約済みです" # 即時表示
-      redirect_to admin_reservations_path
+      flash.now[:alert] = "その座席はすでに予約済みです" # 即時表示
+      render :new, status:400
       return
     elsif @reservation.save
       redirect_to admin_reservations_path, notice: "予約が完了しました"
     else
-      flash[:alert] = "予約に失敗しました。"
-      redirect_to admin_reservations_path
+      flash.now[:alert] = "予約に失敗しました。"
+      render :new, status:400
     end
   end
 
