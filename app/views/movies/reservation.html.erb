@@ -15,7 +15,7 @@
   <tr class="sheetbox">
   <% @sheets.each do |sheet| %>
     <% if sheet.row == 'a' %>
-      <% if @reservations.find_by(schedule_id: @schedule.id, sheet_id: sheet.id).present? %>
+      <% if @reservations.find_by(schedule_id: @schedule.id, sheet_id: sheet.id, date: params[:date]).present? %>
         <td class="reservedsheet">
           <p><%= sheet.row %>-<%= sheet.column %></p>
         </td>
@@ -31,7 +31,7 @@
   <tr class="sheetbox">
   <% @sheets.each do |sheet| %>
     <% if sheet.row == 'b' %>
-      <% if @reservations.find_by(schedule_id: @schedule.id, sheet_id: sheet.id).present? %>
+      <% if @reservations.find_by(schedule_id: @schedule.id, sheet_id: sheet.id, date: params[:date]).present? %>
         <td class="reservedsheet">
           <p><%= sheet.row %>-<%= sheet.column %></p>
         </td>
@@ -47,7 +47,7 @@
   <tr class="sheetbox">
   <% @sheets.each do |sheet| %>
     <% if sheet.row == 'c' %>
-      <% if @reservations.find_by(schedule_id: @schedule.id, sheet_id: sheet.id).present? %>
+      <% if @reservations.find_by(schedule_id: @schedule.id, sheet_id: sheet.id, date: params[:date]).present? %>
         <td class="reservedsheet">
           <p><%= sheet.row %>-<%= sheet.column %></p>
         </td>

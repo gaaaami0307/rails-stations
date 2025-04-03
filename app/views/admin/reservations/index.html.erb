@@ -26,7 +26,7 @@
     <td> <%= re.id %> </td>
     <td> <%= re.schedule.movie.name %> </td>
     <td> <%= re.sheet.row %>-<%= re.sheet.column %> </td>
-    <td> <%= re.date %> </td>
+    <td> <%= re.date %>  <%= re.schedule.start_time.strftime("%H:%M") %>~<%= re.schedule.end_time.strftime("%H:%M") %></td>
     <td> <%= re.name %> </td>
     <td> <%= re.email %> </td>
     </tr>

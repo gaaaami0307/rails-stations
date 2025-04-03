@@ -1,6 +1,8 @@
 class Admin::ReservationsController < ApplicationController
   def index
     @reservations = Reservation.all
+    @reservations = @reservations.joins(:schedule)
+    .where("TIMESTAMP(reservations.date, schedules.start_time) >= ?", Time.current)
   end
 
   def new
