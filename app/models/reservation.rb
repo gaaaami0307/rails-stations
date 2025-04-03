@@ -1,7 +1,7 @@
 class Reservation < ApplicationRecord
   belongs_to :schedule
   belongs_to :sheet
-
+  validates :date, :schedule_id, :sheet_id, uniqueness: { scope: [:schedule_id, :sheet_id, :date], message: "この組み合わせはすでに予約されています。" }
   validate :valid_email_format
 
   private
