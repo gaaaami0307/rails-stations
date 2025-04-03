@@ -1,0 +1,48 @@
+<header>
+  <h1>予約編集<管理者画面></h1>
+</header>
+
+<% if flash[:notice] %>
+  <p style="color: green;"><%= flash[:notice] %></p>
+<% end %>
+
+<% if flash[:alert] %>
+  <p style="color: red;"><%= flash[:alert] %></p>
+<% end %>
+
+<%= form_with(model: @reservation, url: admin_reservation_path(@reservation), method: :put) do |f| %>
+
+  <div>
+  <%= f.label :movie_id, "映画ID" %>
+  <%= f.number_field :movie_id, required: true, value: @movie.id %>
+  </div>
+
+  <div>
+  <%= f.label :schedule_id, "スケジュールID" %>
+  <%= f.number_field :schedule_id, required: true, value: @schedule.id %>
+  </div>
+
+  <div>
+  <%= f.label :sheet_id, "座席ID" %>
+  <%= f.number_field :sheet_id, required: true, value: @sheet.id %>
+  </div>
+
+  <div>
+  <%= f.label :date, "日付" %>
+  <%= f.date_field :date, required: true, value: @reservation.date %>
+  </div>
+
+  <div>
+  <%= f.label :name, "予約者氏名" %>
+  <%= f.text_field :name, required: true, value: @reservation.name %>
+  </div>
+
+  <div>
+  <%= f.label :email, "予約者メールアドレス" %>
+  <%= f.email_field :email, required: true, value: @reservation.email  %>
+  </div>
+
+  <%= f.submit "編集する" %>
+<% end %>
+
+<%= button_to "削除", admin_reservation_path(@reservation), method: :delete, data: { confirm: "本当に削除しますか？" } %>
