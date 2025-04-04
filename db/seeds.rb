@@ -32,3 +32,7 @@ Sheet.create(column:2, row:'c');
 Sheet.create(column:3, row:'c');
 Sheet.create(column:4, row:'c');
 Sheet.create(column:5, row:'c');
+
+Screen.create(name:"Screen A");
+Screen.create(name:"Screen B");
+Screen.create(name:"Screen C");
