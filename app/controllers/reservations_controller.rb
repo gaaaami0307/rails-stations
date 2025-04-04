@@ -1,4 +1,6 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create] # ログインが必要
+  
   def index
     @movie = Movie.find_by(id: params[:movie_id])
     if !params[:schedule_id].present?
@@ -17,22 +19,32 @@ class ReservationsController < ApplicationController
 
     @movie = Movie.find_by(id: params[:movie_id])
 
+    if @movie.nil?
+      flash[:alart]="映画が見つかりませんでした"
+      redirect_to movies_path
+      return
+    end
+
+    @schedules = @movie.schedules
+    @schedule = Schedule.find_by(id: params[:schedule_id])
+
     if !params[:sheet_id].present?
-      redirect_to movie_path(@movie), status:302
+      render "movies/show", status:400
       return
     end
 
     if !params[:date].present?
-      redirect_to movie_path(@movie), status:302
+      render "movies/show", status:400
+
       return
     end
 
     if !params[:screen_id].present?
-      redirect_to movie_path(@movie), status:302
+      render "movies/show", status:400
+
       return
     end
 
-    @schedule = Schedule.find_by(id: params[:schedule_id])
     @sheet = Sheet.find_by(id: params[:sheet_id])
     @screen = Screen.find_by(id: params[:screen_id])
 
@@ -43,6 +55,8 @@ class ReservationsController < ApplicationController
     end
 
     @reservation = Reservation.new
+    @reservation.name = current_user.name
+    @reservation.email = current_user.email
   end
 
   def create

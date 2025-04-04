@@ -29,12 +29,12 @@
 
   <div>
   <%= f.label :name, "予約者氏名" %>
-  <%= f.text_field :name, required: true %>
+  <%= f.text_field :name, required: true, value: @reservation.name %>
   </div>
 
   <div>
   <%= f.label :email, "予約者メールアドレス" %>
-  <%= f.email_field :email, required: true %>
+  <%= f.email_field :email, required: true, value: @reservation.email %>
   </div>
 
   <%= f.submit "予約する" %>
