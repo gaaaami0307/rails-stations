@@ -15,13 +15,21 @@
   <tr class="sheetbox">
   <% @sheets.each do |sheet| %>
     <% if sheet.row == 'a' %>
-      <% if @reservations.find_by(schedule_id: @schedule.id, sheet_id: sheet.id, date: params[:date]).present? %>
+      <% flg = true %>
+      <% @screens.each do |screen| %>
+        <% if @reservations.find_by(schedule_id: @schedule.id, sheet_id: sheet.id, date: params[:date], screen_id: screen.id) == nil %>
+          <td class="sheet">
+            <a href="<%=new_movie_schedule_reservation_path(@movie, @schedule, sheet_id: sheet.id, date: params[:date])%>"><%= sheet.row %>-<%= sheet.column %></a>
+            <br>
+            <%= screen.name %>
+            </td>
+          <% flg = false %>
+          <% break %>
+        <% end %>
+      <% end %>
+      <% if flg %>
         <td class="reservedsheet">
           <p><%= sheet.row %>-<%= sheet.column %></p>
-        </td>
-      <% else %>
-        <td class="sheet">
-          <a href="<%=new_movie_schedule_reservation_path(@movie, @schedule, sheet_id: sheet.id, date: params[:date])%>"><%= sheet.row %>-<%= sheet.column %></a>
         </td>
       <% end %>
     <% end %>

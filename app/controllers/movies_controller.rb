@@ -36,5 +36,6 @@ class MoviesController < ApplicationController
     @schedule = Schedule.find_by(id: params[:schedule_id])
     @sheets = Sheet.all
     @reservations = Reservation.all
+    @screens = Screen.all
   end
 end
