@@ -28,6 +28,11 @@
   </div>
 
   <div>
+  <%= f.label :screen_id, "スクリーンID" %>
+  <%= f.number_field :screen_id, required: true, value: @screen.id %>
+  </div>
+
+  <div>
   <%= f.label :date, "日付" %>
   <%= f.date_field :date, required: true, value: @reservation.date %>
   </div>

@@ -27,10 +27,16 @@ class ReservationsController < ApplicationController
       return
     end
 
+    if !params[:screen_id].present?
+      redirect_to movie_path(@movie), status:302
+      return
+    end
+
     @schedule = Schedule.find_by(id: params[:schedule_id])
     @sheet = Sheet.find_by(id: params[:sheet_id])
+    @screen = Screen.find_by(id: params[:screen_id])
 
-    if Reservation.find_by(schedule_id: @schedule.id, sheet_id: @sheet.id, date: params[:date]).present?
+    if Reservation.find_by(schedule_id: @schedule.id, sheet_id: @sheet.id, date: params[:date], screen_id: @screen.id).present?
       flash[:alert]="その座席は予約済みです。"
       redirect_to movie_path(@movie), status:302
       return
@@ -43,8 +49,9 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @schedule = @reservation.schedule
     @movie = @schedule.movie
+    @screen = @reservation.screen
 
-    if Reservation.find_by(date: @reservation.date, sheet_id: @reservation.sheet_id, schedule_id: @reservation.schedule_id) != nil
+    if Reservation.find_by(date: @reservation.date, sheet_id: @reservation.sheet_id, schedule_id: @reservation.schedule_id, screen_id: @screen.id) != nil
       flash[:alert] = "その座席はすでに予約済みです" # 即時表示
       redirect_to movie_reservation_path(@movie, schedule_id: @schedule.id, date: @reservation.date)
     elsif @reservation.save
@@ -57,6 +64,6 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:schedule_id, :sheet_id, :name, :email, :date)
+    params.require(:reservation).permit(:schedule_id, :sheet_id, :name, :email, :date, :screen_id)
   end
 end

@@ -15,6 +15,7 @@
   <tr>
   <th>ID</th>
   <th>映画ID</th>
+  <th>スクリーン</th>
   <th>座席</th>
   <th>日時</th>
   <th>名前</th>
@@ -25,6 +26,7 @@
     <tr>
     <td> <%= re.id %> </td>
     <td> <%= re.schedule.movie.name %> </td>
+    <td> <%= re.screen.name %> </td>
     <td> <%= re.sheet.row %>-<%= re.sheet.column %> </td>
     <td> <%= re.date %>  <%= re.schedule.start_time.strftime("%H:%M") %>~<%= re.schedule.end_time.strftime("%H:%M") %></td>
     <td> <%= re.name %> </td>

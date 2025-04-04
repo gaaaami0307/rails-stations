@@ -13,8 +13,9 @@ class Admin::ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @schedule = @reservation.schedule
     @movie = @schedule.movie
+    @screen = @reservation.screen
 
-    if Reservation.find_by(date: @reservation.date, sheet_id: @reservation.sheet_id, schedule_id: @reservation.schedule_id) != nil
+    if Reservation.find_by(date: @reservation.date, sheet_id: @reservation.sheet_id, schedule_id: @reservation.schedule_id, screen_id: @screen.id) != nil
       flash.now[:alert] = "その座席はすでに予約済みです" # 即時表示
       render :new, status:400
       return
@@ -31,6 +32,8 @@ class Admin::ReservationsController < ApplicationController
     @schedule = @reservation.schedule
     @movie = @schedule.movie
     @sheet = @reservation.sheet
+    @screen = @reservation.screen
+
   end
 
   def update
@@ -38,8 +41,10 @@ class Admin::ReservationsController < ApplicationController
     @schedule = @reservation.schedule
     @movie = @schedule.movie
     @sheet = @reservation.sheet
+    @screen = @reservation.screen
 
-    if Reservation.find_by(date: params[:reservation][:date], sheet_id: params[:reservation][:sheet_id], schedule_id: params[:reservation][:schedule_id]) != nil
+
+    if Reservation.find_by(date: params[:reservation][:date], sheet_id: params[:reservation][:sheet_id], schedule_id: params[:reservation][:schedule_id], screen_id: params[:reservation][:screen_id]) != nil
       flash.now[:alert] = "その座席はすでに予約済みです" # 即時表示
       render :show, status:400
     elsif @reservation.update(reservation_params)
@@ -55,6 +60,7 @@ class Admin::ReservationsController < ApplicationController
     @schedule = @reservation.schedule
     @movie = @schedule.movie
     @sheet = @reservation.sheet
+    @screen = @reservation.screen
 
   if @reservation.delete
       redirect_to admin_reservations_path, notice: "削除に成功しました！"
@@ -67,6 +73,6 @@ class Admin::ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:schedule_id, :sheet_id, :name, :email, :date)
+    params.require(:reservation).permit(:schedule_id, :sheet_id, :name, :email, :date, :screen_id)
   end
 end
